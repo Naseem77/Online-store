@@ -1,3 +1,4 @@
+
 # Created by https://www.gitignore.io/api/node,webstorm,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=node,webstorm,visualstudiocode
 
@@ -205,5 +206,5 @@ fabric.properties
 # Markdown Navigator plugin
 .idea/**/markdown-navigator.xml
 .idea/**/markdown-navigator/
-
+.idea
 # End of https://www.gitignore.io/api/node,webstorm,visualstudiocode
