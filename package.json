@@ -2,7 +2,7 @@
   "name": "online-store",
   "version": "1.0.0",
   "description": "",
-  "main": "new.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
     "test": "mocha test/*.spec.js --color",
