@@ -1,0 +1,124 @@
+body {
+  background-image: url(https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300280/54088843-healthy-food-background-studio-photo-of-different-fruits-on-white-wooden-table-high-resolution-produ.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+        #container
+		{
+            width: 300px;
+            height: 400px;
+            /* margin: auto; */
+            margin-left: 150px;
+        }
+        .tabs {
+            display: table-cell;
+            width: 30%;
+            background-color: rgba(11, 177, 224, 0.82);
+            padding: 10px;
+            text-align: left;
+            vertical-align: left;
+            border: 2px solid #ffffff;
+            border-bottom: 0px;
+            position: relative;
+            font-size: 1.3em;
+            color: #ffffff;
+        }
+        .tabs:hover, p{
+            cursor: pointer;
+        }
+
+        #lt {
+            background-color: rgb(12, 132, 189);
+        }
+        #cont {
+            width: 100%;
+            height: 400px;
+            background-color: rgba(11, 177, 224, 0.82);
+            border: 2px solid #ffffff;
+        }
+
+        input{
+            display: block;
+            width: 250px;
+            margin: 10px 13px;
+            padding: 10px;
+            font-size: 1.3em;
+            color: rgba(11, 177, 224, 0.82);
+            outline: 2px solid #ffffff;
+        }
+
+        select{
+            display: block;
+            width: 250px;
+            margin: 10px 13px;
+            padding: 10px;
+            font-size: 1.3em;
+            color: rgba(11, 177, 224, 0.82);
+            outline: 2px solid #ffffff;
+        }
+
+        input[type="submit"] {
+            width: 272px;
+            color: #6e6e6e;
+        }
+
+        #clear {
+            clear: both;
+        }
+
+        .comm {
+            position: absolute;
+            visibility: hidden;
+        }
+        #login {
+            visibility: visible;
+        }
+
+        h3 {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 10px 15px;
+            font-size: 1.5em;
+            color: #ffffff;
+        }
+
+        #forgot h3 {
+            display: block;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        #forgot div {
+            margin-top: 30px;
+        }
+        p {
+            padding: 10px 15px;
+            font-size: 1.3em;
+            color: #ffffff;
+        }
+
+
+
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav
+{
+	float: right;
+}
+li a {
+  display: block;
+}
+header nav ul li above
+{
+	padding-middle: 30px;
+	font-weight: bold;
+	color: white;
+}
