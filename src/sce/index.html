@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>
+    Super Sami
+    </title>
+    <link rel="stylesheet" href="sce.css"/>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <nav>
+                    <ul>
+                        <button type="" onclick="contact()">Home</button>
+                        <button type="" onclick="contact()">Menu</button>
+                        <button type="" onclick="faq()">FAQ</button>
+                        <button type="" onclick="contact()">Contact Us</button>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>	
+
+    <form>
+
+        <div id="container">
+            <div id="tabs">
+                <p id="lt" class="tabs" onclick="loginTabFun()">Log in</p>
+                <p id="rt" class="tabs" onclick="regTabFun()">Register</p>
+                <div id="clear"></div>
+            </div>
+
+            <div id="cont">
+                <div id="login" class="comm">
+                    <h3>Sign in</h3>
+                    <input id="se" type="email" placeholder="Email" required/>
+                    <input id="sp" type="password" placeholder="Password" required/>
+                    <input type="submit" onclick="login()" value="Submit"/>
+                    <p onclick="forTabFun()">Forget Password?</p>
+                </div>
+                <div id="register" class="comm">
+                    <h3>Register</h3>
+                    <input id="re" type="email" placeholder="Email" required/>
+                    <input id="ru" type="username" placeholder="Username" required/>
+                    <input type="tel" id="rph" placeholder="Phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+                    <input id="rp" type="password" placeholder="Password" required/>
+                    <input id="rrp" type="password" placeholder="Re write Password" required/>
+                    <select name="question" id="question">
+                        <option value="opt1" onclick="closeImage()">Customer</option>
+                        <option value="opt2" onclick="openImage()">Student</option>
+                    </select>
+                    <input type="file" id="img" name="img" accept="image/*" style="visibility: hidden;">
+                    <input type="submit" onclick="register()" value="Submit"/>
+
+                </div >
+                <div id="forgot" class="comm">
+                    <h3>Forgot Password</h3>
+                    <div>
+                        <input id="fe" type="email" placeholder="Email" required/>
+                        <input type="submit" onclick="forgot()" value="Submit"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <footer>
+            <p>&copy; Copyright 2020, Super Sami</p>
+    </footer>
+    </form>
+    <script src="sce.js"></script>
+</body>
+</html>
