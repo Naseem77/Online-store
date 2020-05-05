@@ -6,6 +6,7 @@
         "node": true
     },
     "extends": "eslint:recommended",
+    "parser": "babel-eslint",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -13,10 +14,22 @@
     "parserOptions": {
         "ecmaVersion": 2018
     },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
     "rules": {
         "indent": [
             "error",
             "tab"
+        ],
+        "no-unused-vars":[
+            "error",
+            {
+                "varsIgnorePattern": "^[A-Z]"
+            }
         ],
         "linebreak-style": [
             "error",
