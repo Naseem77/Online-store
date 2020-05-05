@@ -1,11 +1,18 @@
-const express  = require('express')
-const app_port = process.env.PORT || 3000
-const app = express()
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from './Redux/Store'
 
-app.get('/', (req, res) => {
-	res.send('Welcome to our online-store app!!!')
-})
+let app = (
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>
+)
 
-app.listen(app_port)
-console.log(`app is running. port: ${app_port}`)
-console.log(`http://127.0.0.1:${app_port}/`)
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true
+
+ReactDOM.render(app, document.getElementById('root'))
