@@ -309,7 +309,7 @@ const dataForTheMenu = [
 				id: i,
 				url: '/?category=' + x.name,
 				icon: x.icon
-			};
+			}
 		})
 	},
 
