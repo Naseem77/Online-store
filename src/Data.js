@@ -293,7 +293,6 @@ const categories = [
 	},
 	{
 		name: 'Snacks and Sweets',
-		icon: "Cake"
 	}
 ]
 
@@ -308,7 +307,7 @@ const dataForTheMenu = [
 				name: x.name,
 				id: i,
 				url: '/?category=' + x.name,
-				icon: x.icon
+				icon: '1'
 			}
 		})
 	},
