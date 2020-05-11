@@ -8,6 +8,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { setCheckedOutItems } from "../../Redux/Actions";
+import fire from "../../config/FBConfig";
+import PriceDialog from "../PriceDialog/PriceDialog";
 
 const mapStateToProps = state => {
   return {
@@ -63,7 +65,17 @@ class ConnectedOrder extends Component {
           variant="outlined"
           disabled={totalPrice === 0}
           onClick={() => {
+            // fire.firestore().collection('orders').add({
+            //     itemName:this.props.checkedOutItems.map((item, index)=>{item.name}),
+            //     price:this.props.checkedOutItems.map((item, index)=>{item.price}),
+            //     quantity:this.props.checkedOutItems.map((item, index)=>{item.quantity})
+            // //  itemName:this.props.checkedOutItems.index.name,
+            // //  price:this.props.checkedOutItems.index.price,
+            // //  quantity:this.props.checkedOutItems.index.quantity
+            //   });
+          
             console.log("purchased");
+
           }}
           style={{ margin: 5, marginTop: 30 }}
         >

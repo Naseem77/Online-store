@@ -2,17 +2,17 @@
 const Auth = {
 	_isAuthenticated: false,
 
-	authenticate(name, pass, cb) {
+	authenticate(email, pass, cb) {
 		this._isAuthenticated = true
 		setTimeout(
 			() =>
 				cb({
-					name: name
+					email: email
 				}),
 			100
 		)
 	},
-
+	
 	signout(cb) {
 		this._isAuthenticated = false
 		setTimeout(cb, 100)
