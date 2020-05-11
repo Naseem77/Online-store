@@ -1,4 +1,4 @@
- import React, { Component } from 'react'
+import React, { Component } from 'react'
 import './App.css'
 import Header from './Components/Header/Header.js'
 import ProductList from './Components/ProductList/ProductList'
@@ -12,7 +12,6 @@ import SignUp from './Components/SignUp/SignUp'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 
 class App extends Component {
-	authL
 	render() {
 		return (
 			<div className="app">
