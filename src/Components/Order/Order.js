@@ -65,18 +65,26 @@ class ConnectedOrder extends Component {
           variant="outlined"
           disabled={totalPrice === 0}
           onClick={() => {
-            // fire.firestore().collection('orders').add({
-            //     itemName:this.props.checkedOutItems.map((item, index)=>{item.name}),
-            //     price:this.props.checkedOutItems.map((item, index)=>{item.price}),
-            //     quantity:this.props.checkedOutItems.map((item, index)=>{item.quantity})
+            let arr=this.props.checkedOutItems.map((item, index)=>{
+                return{itemName:item.name,
+                price:item.price,
+                quantity:item.quantity
+
+            }});
+            fire.firestore().collection('orders').add({
+              arr});
+                      
+              
             // //  itemName:this.props.checkedOutItems.index.name,
             // //  price:this.props.checkedOutItems.index.price,
             // //  quantity:this.props.checkedOutItems.index.quantity
-            //   });
+          
           
             console.log("purchased");
 
-          }}
+          }
+        }
+      
           style={{ margin: 5, marginTop: 30 }}
         >
           Purchase
