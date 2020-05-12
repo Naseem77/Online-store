@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +13,19 @@ const mapStateToProps = state => {
 // This component shows the items user checked out from the cart.
 class ConnectedPayment extends Component {
   state = {
-    pass: "",
+    fullname: "",
+    email:"",
+    address:"",
+    city:"",
+    state1:"",
+    zip:"",
+    cardname:"",
+    cardnumber:"",
+    expmonth:"",
+    expyear:"",
+    cvv:"",
+    checkboxship:"",
+
     redirectToReferrer: false
   };
   render() {
@@ -26,46 +39,131 @@ class ConnectedPayment extends Component {
                   <div className="col-50">
                     <h3>Billing Address</h3>
                     <label htmlFor="fname"><i className="fa fa-user" /> Full Name</label>
-                    <input type="text" id="fname" name="firstname" placeholder="Max" />
+                    <input
+                      value={this.state.fullname}
+                      type="text"
+                      placeholder="Nasim"
+                      onChange={e => {
+                        this.setState({ fullname: e.target.value });
+                      }}
+                    />
                     <label htmlFor="email"><i className="fa fa-envelope" /> Email</label>
-                    <input type="text" id="email" name="email" placeholder="max@example.com" />
+                    <input
+                    value={this.state.email}
+                    type="text"
+                    placeholder="nasim@example.com"
+                    onChange={e => {
+                      this.setState({ email: e.target.value });
+                    }}
+                  />
                     <label htmlFor="adr"><i className="fa fa-address-card-o" /> Address</label>
-                    <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" />
+                    <input
+                    value={this.state.address}
+                    type="text"
+                    placeholder="542 W. 15th Street"
+                    onChange={e => {
+                      this.setState({ address: e.target.value });
+                    }}
+                  />
                     <label htmlFor="city"><i className="fa fa-institution" /> City</label>
-                    <input type="text" id="city" name="city" placeholder="Ashdod" />
+                    <input
+                    value={this.state.city}
+                    type="text"
+                    placeholder="Ashdod"
+                    onChange={e => {
+                      this.setState({ city: e.target.value });
+                    }}
+                    />
                     <div className="row">
                       <div className="col-50">
                         <label htmlFor="state">State</label>
-                        <input type="text" id="state" name="state" placeholder="Ashdod" />
+                        <input
+                        value={this.state.state1}
+                        type="text"
+                        placeholder="Ashdod"
+                        onChange={e => {
+                          this.setState({ state1: e.target.value });
+                        }}
+                        />
                       </div>
                       <div className="col-50">
                         <label htmlFor="zip">Zip</label>
-                        <input type="text" id="zip" name="zip" placeholder={10002} />
+                        <input
+                        value={this.state.zip}
+                        type="text"
+                        placeholder={10002}
+                        onChange={e => {
+                          this.setState({ zip: e.target.value });
+                        }}
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="col-50">
                     <h3>Payment</h3>
                     <label htmlFor="cname">Name on Card</label>
-                    <input type="text" id="cname" name="cardname" placeholder="Max" />
+                    <input
+                    value={this.state.cardname}
+                    type="text"
+                    placeholder="cardname"
+                    onChange={e => {
+                      this.setState({ cardname: e.target.value });
+                    }}
+                    />
                     <label htmlFor="ccnum">Credit card number</label>
-                    <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" />
+                    <input
+                    value={this.state.cardnumber}
+                    type="text"
+                    placeholder="1111-2222-3333-4444"
+                    onChange={e => {
+                      this.setState({ cardnumber: e.target.value });
+                    }}
+                    />
                     <label htmlFor="expmonth">Exp Month</label>
-                    <input type="text" id="expmonth" name="expmonth" placeholder="May" />
+                    <input
+                    value={this.state.expmonth}
+                    type="text"
+                    placeholder="5"
+                    onChange={e => {
+                      this.setState({ expmonth: e.target.value });
+                    }}
+                    />
                     <div className="row">
                       <div className="col-50">
                         <label htmlFor="expyear">Exp Year</label>
-                        <input type="text" id="expyear" name="expyear" placeholder={2019} />
+                        <input
+                        value={this.state.expyear}
+                        type="text"
+                        placeholder={2019}
+                        onChange={e => {
+                          this.setState({ expyear: e.target.value });
+                        }}
+                      />
                       </div>
                       <div className="col-50">
                         <label htmlFor="cvv">CVV</label>
-                        <input type="text" id="cvv" name="cvv" placeholder={111} />
+                        <input
+                        value={this.state.cvv}
+                        type="text"
+                        placeholder={111}
+                        onChange={e => {
+                          this.setState({ cvv: e.target.value });
+                        }}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
                 <label>
-                  <input type="checkbox" defaultChecked="checked" name="sameadr" /> Shipping address same as billing
+                  <input
+                  value={this.state.checkboxship}
+                  type="checkbox"
+                  defaultChecked="checked"
+                  placeholder={111}
+                  onChange={e => {
+                    this.setState({ checkboxship: e.target.value });
+                  }}
+                 /> Shipping address same as billing
                 </label>
               </div>
             </div>
