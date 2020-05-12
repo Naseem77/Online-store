@@ -16,11 +16,9 @@ npm install
 /* Then start both Node and React */
 npm start
 
-/* To run the tests */
-npm run test
+/* To run the linter */
+npm run lint
 
-/* Running e2e tests */
-npm run wdio
 
 
 ```
