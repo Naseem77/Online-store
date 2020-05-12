@@ -73,18 +73,18 @@ class ConnectedOrder extends Component {
             }});
             fire.firestore().collection('orders').add({
               arr});
-                      
-              
+
+
             // //  itemName:this.props.checkedOutItems.index.name,
             // //  price:this.props.checkedOutItems.index.price,
             // //  quantity:this.props.checkedOutItems.index.quantity
-          
-          
-            console.log("purchased");
+
+
+            this.props.history.push("/Payment");
 
           }
         }
-      
+
           style={{ margin: 5, marginTop: 30 }}
         >
           Purchase

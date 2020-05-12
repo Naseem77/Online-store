@@ -10,6 +10,7 @@ import Order from './Components/Order/Order'
 import Login from './Components/Login/Login'
 import SignUp from './Components/SignUp/SignUp'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
+import PaymentDetails from './Components/PaymentDetails/PaymentDetails'
 
 class App extends Component {
 	render() {
@@ -26,6 +27,8 @@ class App extends Component {
 							<Route path="/login" component={Login} />
 							<Route path="/signUp" component={SignUp} />
 							<ProtectedRoute path="/order" component={Order} />
+							<ProtectedRoute path="/payment" component={PaymentDetails} />
+
 							<Route
 								component={() => (
 									<div style={{ padding: 20 }}>Page not found</div>
