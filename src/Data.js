@@ -303,21 +303,21 @@ const categories = [
 
 // Data for rendering menu.
 const dataForTheMenu = [
-	{ name: 'Home page', url: '/', icon: 'home', id: 0 },
-	{
-		name: 'Product Categories',
-		id: 1,
-		children: categories.map((x, i) => {
-			return {
-				name: x.name,
-				id: i,
-				url: '/?category=' + x.name,
-				icon: '1'
-			}
-		})
-	},
+  { name: "Home page", url: "/", icon: "home", id: 0 },
+  {
+    name: "Product Categories",
+    id: 1,
+    children: categories.map((x, i) => {
+      return {
+        name: x.name,
+        id: i,
+        url: "/?category=" + x.name,
+        icon: x.icon
+      };
+    })
+  },
 
-]
+];
 
 
 export { sampleProducts, categories, dataForTheMenu }
