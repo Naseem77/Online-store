@@ -279,22 +279,27 @@ const sampleProducts = [
 
 // List of item categories.
 const categories = [
-	{
-		name: 'All categories',
-	},
-	{
-		name: 'Dairy products',
-	},
-	{
-		name: 'Fruits and Vegetables',
-	},
-	{
-		name: 'Meats and fish',
-	},
-	{
-		name: 'Snacks and Sweets',
-	}
-]
+  {
+    name: "All categories",
+    icon: "list"
+  },
+  {
+    name: "Dairy products",
+    icon: "🥛"
+  },
+  {
+    name: "Fruits and Vegetables",
+    icon: "🍅 "
+  },
+  {
+    name: "Meats and fish",
+    icon: "🍔"
+  },
+  {
+    name: "Snacks and Sweets",
+    icon: "🍫"
+  }
+];
 
 // Data for rendering menu.
 const dataForTheMenu = [
