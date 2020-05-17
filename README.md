@@ -30,6 +30,7 @@ npm run lint
 ```
 
 ## Features
+```javascript
 1- Sorting products
 2- Details of the shop income
 3- Filer products
@@ -46,5 +47,5 @@ npm run lint
 14- Add products to my cart
 15- Increase or decrease products amount
 16- Removing products from cart
- 
 
+```
