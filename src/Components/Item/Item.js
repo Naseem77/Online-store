@@ -11,6 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
+import fire from "../../config/FBConfig";
 
 class ConnectedItem extends Component {
   render() {
@@ -39,8 +40,10 @@ class ConnectedItem extends Component {
             >
               {this.props.item.name}
             </div>
+            
             <div style={{ margin: 5 }}>Price: {this.props.item.price} ₪</div>
             <div style={{ color: "#1a9349", fontWeight: "bold", margin: 5 }}>
+            {this.props.item.popular && "Popular"}
             </div>
           </CardContent>
         </CardActionArea>
@@ -61,10 +64,19 @@ class ConnectedItem extends Component {
             <IconButton
               size="small"
               onClick={e => {
+                
                 e.stopPropagation();
-                this.props.dispatch(
+                  fire.firestore().collection('sampleProducts').doc(''+this.props.item.id).get().then((doc)=>{
+                  if(doc.data().stock>0)
+                  this.props.dispatch(
                   addItemInCart({ ...this.props.item, quantity: 1 })
                 );
+                   else{
+                alert("The item out of stock")
+                    }
+                }
+                );  
+               
               }}
               color="primary"
               aria-label="Add to shopping cart"

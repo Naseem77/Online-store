@@ -31,6 +31,3 @@ export const setLoggedInUser = user => ({
 export const logout = () => ({
   type: CONSTANTS.LOGOUT,
 });
-// export const logout = () => ({
-//   type: CONSTANTS.SIGNUP,
-// });

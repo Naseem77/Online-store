@@ -69,7 +69,9 @@ class ConnectedHeader extends Component {
               src={cartImage}
               alt={"Logo"}
               style={{ marginLeft: 10 }}
-
+              onClick={() => {
+                this.props.history.push("/");
+              }}
             />
             <TextField
               label="Search products"

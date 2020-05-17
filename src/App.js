@@ -11,9 +11,15 @@ import Login from './Components/Login/Login'
 import SignUp from './Components/SignUp/SignUp'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import PaymentDetails from './Components/PaymentDetails/PaymentDetails'
+import Admin from './Components/Admin/Admin'
+import AdminAddProducts from './Components/Admin/AdminAddProducts'
+import AdminEditProducts from './Components/Admin/AdminEditProducts'
+import AdminShopRevenue from './Components/Admin/AdminShopRevenue'
+import asyncCall from './Data'
 
 class App extends Component {
 	render() {
+		asyncCall()		
 		return (
 			<div className="app">
 				<Header />
@@ -28,7 +34,10 @@ class App extends Component {
 							<Route path="/signUp" component={SignUp} />
 							<ProtectedRoute path="/order" component={Order} />
 							<ProtectedRoute path="/payment" component={PaymentDetails} />
-
+							<ProtectedRoute path="/admin" component={Admin} />
+							<ProtectedRoute path="/AdminAddProducts" component={AdminAddProducts} />
+							<ProtectedRoute path="/AdminEditProducts" component={AdminEditProducts} />
+							<ProtectedRoute path="/AdminShopRevenue" component={AdminShopRevenue} />
 							<Route
 								component={() => (
 									<div style={{ padding: 20 }}>Page not found</div>

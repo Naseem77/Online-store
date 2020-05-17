@@ -10,5 +10,5 @@ const firebaseConfig = {
     measurementId: "G-HJSF331Z99"
   };
   const fire=firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
-  export default fire;      
+
+  export default fire;       

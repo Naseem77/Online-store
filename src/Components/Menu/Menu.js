@@ -51,7 +51,6 @@ class ConnectedMenu extends Component {
   }
 
   renderMenu(data) {
-
     return (<List
     >
       {data

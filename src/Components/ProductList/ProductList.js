@@ -6,7 +6,6 @@ import Api from "../../Api";
 import Paging from "../Paging/Paging";
 import ProductsHeader from "../ProductsHeader/ProductsHeader"
 
-
 // This component is responsible for fetching products. It determines from query string which products to fetch.
 // The URL is checked on initial mount and when URL changes.
 class ProductList extends Component {
@@ -23,9 +22,7 @@ class ProductList extends Component {
   }
 
   async fetchData() {
-
-    this.setState({ loading: true });
-
+    this.setState({ loading: true });      
     // Parse the query string
     let qsAsObject = queryString.parse(this.props.location.search);
 

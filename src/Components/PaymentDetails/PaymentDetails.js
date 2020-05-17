@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import fire from "../../config/FBConfig";
+import { userType } from "../../Components/Login/Login";
+import totalPrice, { totalOrderPrice } from "../../Components/Order/Order"
 
 const mapStateToProps = state => {
   return {
@@ -182,8 +184,63 @@ class ConnectedPayment extends Component {
           color="primary"
           variant="outlined"
           onClick={() => {
+            console.log("2:",userType)
+            var i=0,j=0,k=0,l=0;
+            this.props.checkedOutItems.map((item, index)=>{
+              console.log(item.category)
+              switch(item.category){
+                case 'Snacks and Sweets':{
+                  i+=item.price*item.quantity
+                  break;
+                }
+                 case 'Dairy products':{
+                    j+=item.price*item.quantity
+                    break;
+                 }
+                   
+                 case 'Meats and fish':{
+                   k+=item.price*item.quantity
+                   break;
+
+                 }
+                    
+                 case 'Fruits and Vegetables':{
+                   l+=item.price*item.quantity
+                   break;
+                 }
+                     
+              }
+              fire.firestore().collection('sampleProducts').doc(''+item.id).get().then((doc)=>{
+              var itemStock=doc.data().stock;
+              console.log( itemStock);
+              itemStock =itemStock-item.quantity;
+              // console.log( sampleProducts[item.id].stock);
+              fire.firestore().collection('sampleProducts').doc(''+item.id).update({
+                stock: itemStock               
+              })
+
+              }
+              );
+            })
+             fire.firestore().collection('ordersHistory').add({
+                userType:userType,
+                date:new Date(),
+                snacksAndSweets:i,
+                meatsAndFish:k,
+                dairyProducts:j,
+                fruitsAndVegetables:l,
+                totalOrderPrice: totalOrderPrice
+                
+              })
+              
+             
+            alert('The order will be sent to' + this.state.address + 'in'+ this.state.state1);
+            // useAlert().show('The order will be sent to' +this.state.Address+' in' +this.state.state1)  
+            // <Alert severity="success">The order will be sent to ${this.state.Address} in ${this.state.state1}</Alert>
             console.log("purchased");
-          }}
+            this.props.history.push("/");
+          }
+        }
           style={{ margin: 5, marginTop: 30 }}
         >
           Pay
@@ -193,7 +250,7 @@ class ConnectedPayment extends Component {
           variant="outlined"
           onClick={() => {
             this.props.history.push("/");
-          }}
+          }}  
           style={{ margin: 5, marginTop: 30 }}
         >
           Cancel

@@ -8,7 +8,7 @@ class Api {
 	getItemUsingID(id) {
 		return new Promise((resolve) => {
 			setTimeout(() => {
-				let res = sampleProducts.filter(x => x.id === parseInt(id, 12))
+				let res = sampleProducts.filter(x => x.id === parseInt(id, 10))
 				resolve(res.length === 0 ? null : res[0])
 			}, 500)
 		})
@@ -27,12 +27,12 @@ class Api {
 
 		return items
 	}
-
+	
 	searchItems({
-		category = 'home',
+		category = 'popular',
 		term = '',
 		sortValue = 'lh',
-		itemsPerPage = 12,
+		itemsPerPage = 10,
 		usePriceFilter = 'false',
 		minPrice = 0,
 		maxPrice = 1000,
@@ -54,8 +54,8 @@ class Api {
 						return false
 					}
 
-					if (category === 'home') {
-						return true
+					if (category === 'popular') {
+						return item.popular
 					}
 
 					if (category !== 'All categories' && category !== item.category)

@@ -7,6 +7,8 @@ import Api from "../../Api";
 import Item from "../Item/Item";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
+import { userType } from "../Login/Login";
+import fire from "../../config/FBConfig";
 
 
 
@@ -73,6 +75,9 @@ class ConnectedDetails extends Component {
     if (!this.state.item) {
       return null;
     }
+    var price=this.state.item.price;
+    if(userType==="student")
+         price -=1;
 
     return (
       <div style={{ padding: 10 }}>
@@ -92,6 +97,7 @@ class ConnectedDetails extends Component {
               borderRadius: "5px",
               objectFit: "cover"
             }} />
+            
           <div
             style={{
               flex: 1,
@@ -100,14 +106,23 @@ class ConnectedDetails extends Component {
               flexDirection: "column"
             }}
           >
-
             <div style={{
               fontSize: 16,
 
             }}>
-              Price: {this.state.item.price} ₪
+              company: {this.state.item.company} 
             </div>
+            <div style={{
+              fontSize: 16,
 
+            }}>
+              Price for {userType}: {price} ₪
+              </div>
+            {this.state.item.popular && (
+              <div style={{ fontSize: 14, marginTop: 5, color: "#228B22" }}>
+                (Popular product)
+              </div>
+            )}
             <TextField
               type="number"
               value={this.state.quantity}
@@ -123,12 +138,20 @@ class ConnectedDetails extends Component {
               color="primary"
               variant="outlined"
               onClick={() => {
+                console.log(this.state.item.stock)
+                fire.firestore().collection('sampleProducts').doc(''+this.state.item.id).get().then((doc)=>{
+                  if(doc.data().stock>0)
                 this.props.dispatch(
                   addItemInCart({
                     ...this.state.item,
                     quantity: this.state.quantity
-                  })
-                );
+                  })  
+                  )
+                   else{
+                alert("The item out of stock")
+                    }
+                }
+                );  
               }}
             >
               Add to Cart <AddShoppingCartIcon style={{ marginLeft: 5 }} />
@@ -152,7 +175,19 @@ class ConnectedDetails extends Component {
             fontSize: 13,
             overflow: "auto"
           }}
-        >
+
+        > 
+          category:{this.state.item.category}
+        </div>
+        <div
+          style={{
+            maxHeight: 200,
+            fontSize: 13,
+            overflow: "auto"
+          }}
+
+        > 
+
           {this.state.item.description ? this.state.item.description : "Not available"}
         </div>
 

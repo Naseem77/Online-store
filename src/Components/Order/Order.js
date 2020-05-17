@@ -10,7 +10,10 @@ import TableRow from "@material-ui/core/TableRow";
 import { setCheckedOutItems } from "../../Redux/Actions";
 import fire from "../../config/FBConfig";
 import PriceDialog from "../PriceDialog/PriceDialog";
-
+import { sampleProducts } from "../../Data"
+import { userType } from "../Login/Login";
+export var totalOrderPrice;
+var totalPrice 
 const mapStateToProps = state => {
   return {
     checkedOutItems: state.checkedOutItems
@@ -19,11 +22,21 @@ const mapStateToProps = state => {
 
 // This component shows the items user checked out from the cart.
 class ConnectedOrder extends Component {
+  updateTotalPriceDiscount(tPrice){
+    totalPrice=tPrice-tPrice*0.2
+
+  }
+  
   render() {
-    let totalPrice = this.props.checkedOutItems.reduce((accumulator, item) => {
+
+    totalPrice = this.props.checkedOutItems.reduce((accumulator, item) => {
       return accumulator + item.price * item.quantity;
     }, 0);
-
+    if(userType==="student")
+    {
+      this.updateTotalPriceDiscount(totalPrice)
+    }
+    totalOrderPrice=totalPrice;
     return (
       <div style={{ padding: 10 }}>
         <div style={{ fontSize: 24, marginTop: 10 }}>
@@ -58,33 +71,28 @@ class ConnectedOrder extends Component {
             fontSize: 22
           }}
         >
-          Total price: {totalPrice} ₪
+          Total price for {userType}: {totalPrice} ₪
         </div>
         <Button
           color="primary"
-          variant="outlined"
+          variant="outlined"  
           disabled={totalPrice === 0}
           onClick={() => {
-            let arr=this.props.checkedOutItems.map((item, index)=>{
+
+                let arr=this.props.checkedOutItems.map((item, index)=>{
                 return{itemName:item.name,
                 price:item.price,
                 quantity:item.quantity
-
-            }});
-            fire.firestore().collection('orders').add({
-              arr});
-
-
-            // //  itemName:this.props.checkedOutItems.index.name,
-            // //  price:this.props.checkedOutItems.index.price,
-            // //  quantity:this.props.checkedOutItems.index.quantity
-
-
-            this.props.history.push("/Payment");
+                }
+              });   
+            fire.firestore().collection('orders').add({arr})
+          
+             this.props.history.push("/Payment");
+            
 
           }
         }
-
+      
           style={{ margin: 5, marginTop: 30 }}
         >
           Purchase
