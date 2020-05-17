@@ -11,6 +11,8 @@ Password: admin@gmail.com
 
 ## Build/Run
 
+Heroku: https://project-sce123.herokuapp.com/
+
 #### Requirements
 
 - Node.js
