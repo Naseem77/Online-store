@@ -22,10 +22,10 @@ class ConnectedLogin extends Component {
     redirectToReferrer: false
   };
 
-  
+
 
   login(e) {
-  
+
    fire.auth().signInWithEmailAndPassword(this.state.email, this.state.pass).then((user)=>{
 
       if (!user) {
@@ -34,7 +34,7 @@ class ConnectedLogin extends Component {
       }
 
       this.props.dispatch(setLoggedInUser({ name: user.name }));
-      
+
       if (this.state.email === "admin@gmail.com"){
         this.setState(() => ({
           redirectToReferrer: true,
@@ -56,9 +56,8 @@ class ConnectedLogin extends Component {
       userType=doc.data().userType;
     })
   }
-      
+
   render() {
-    alert("To enter admin mode login with email: admin@gmail.com  and password:  admin@gmail.com   the path: /admin");
     // If user was authenticated, redirect her to where she came from.
     if (this.state.redirectToReferrer === true && this.state.isAdmin === "basic") {
       return <Redirect to="/"/>;
@@ -124,12 +123,23 @@ class ConnectedLogin extends Component {
               console.log("1:",userType)
               this.login();
               // Simulate authentication call
-              
+
             }}
           >
             Login
           </Button>
           {this.state.wrongCred && (<div style={{ color: "red" }}>Wrong username and/or password</div>)}
+          <Button
+            style={{ marginTop: 20, width: 200 }}
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+            this.props.history.push("/signUp");
+
+            }}
+          >
+            SignUp
+          </Button>
         </div>
       </div>
     );

@@ -126,7 +126,7 @@ class ConnectedHeader extends Component {
               >
                 Login
               </Button>
-              
+
             ) : (
                 <Avatar
                   onClick={event => {
@@ -137,16 +137,6 @@ class ConnectedHeader extends Component {
                   <Person />
                 </Avatar>
               )}
-              <Button
-                variant="outlined"
-                style={{ marginRight: 20 }}
-                color="primary"
-                onClick={() => {
-                  this.props.history.push("/signUp");
-                }}
-              >
-                SignUp
-              </Button>
             <IconButton
               aria-label="Cart"
               onClick={() => {
