@@ -15,7 +15,7 @@ import { userType } from "../Login/Login";
 import Api from "../../Api";
 import Item from "../Item/Item";
 export var totalOrderPrice;
-var totalPrice 
+var totalPrice
 
 const mapStateToProps = state => {
   return {
@@ -32,27 +32,31 @@ class ConnectedOrder extends Component {
     totalPrice=tPrice-tPrice*0.2
 
   }
-  
+   async func1(item){
+     var recommendItems= await Api.searchItems({
+         category:item.category
+     })
+     return recommendItems
+   }
+
   async getRecommendItems(){
     var tmp=[]
     var dairyProducts= this.props.checkedOutItems.filter(x=>x.category==="Dairy products")
     var snacksAndSweetsProducts= this.props.checkedOutItems.filter(x=>x.category==="Snacks and Sweets")
     var vegeFrutisProducts= this.props.checkedOutItems.filter(x=>x.category==="Fruits and Vegetables")
     var meatsAndFishProducts= this.props.checkedOutItems.filter(x=>x.category==="Meats and fish")
+
     for (let i = 0; i < this.props.checkedOutItems.length; i++){
       var product=this.props.checkedOutItems[i]
       if(product.category==="Dairy products"){
-      var item = await Api.getItemUsingID(dairyProducts[0].id)
-      var recommendItems= await Api.searchItems({
-          category:item.category
-      })
-      tmp[0]=recommendItems.data.filter(x => x.id !== item.id)
+      var recommendItems = await this.func1(product)
+      tmp[0]=recommendItems.data.filter(x => x.id !== product.id)
       for (let index = 0; index < dairyProducts.length; index++) {
         item = await Api.getItemUsingID(dairyProducts[index].id)
         tmp[0]=tmp[0].filter(x => x.id !== item.id)
       }
       tmp[0]=tmp[0].slice(0,3)
-      }      
+      }
       else if (product.category==="Snacks and Sweets") {
         var item = await Api.getItemUsingID(snacksAndSweetsProducts[0].id)
       var recommendItems= await Api.searchItems({
@@ -105,7 +109,7 @@ class ConnectedOrder extends Component {
     }
 
   totalOrderPrice=totalPrice;
-  
+
     return (
       <div style={{ padding: 10 }}>
         <div style={{ fontSize: 24, marginTop: 10 }}>
@@ -144,7 +148,7 @@ class ConnectedOrder extends Component {
         </div>
         <Button
           color="primary"
-          variant="outlined"  
+          variant="outlined"
           disabled={totalPrice === 0}
           onClick={() => {
 
@@ -153,15 +157,15 @@ class ConnectedOrder extends Component {
                 price:item.price,
                 quantity:item.quantity
                 }
-              });   
+              });
             fire.firestore().collection('orders').add({arr})
-          
+
              this.props.history.push("/Payment");
-            
+
 
           }
         }
-      
+
           style={{ margin: 5, marginTop: 30 }}
         >
           Purchase
@@ -194,7 +198,7 @@ class ConnectedOrder extends Component {
       })
         })
       }
-      </div>  
+      </div>
     );
   }
 }
