@@ -16,7 +16,6 @@ import Api from "../../Api";
 import Item from "../Item/Item";
 export var totalOrderPrice;
 var totalPrice
-var tmp=[]
 
 const mapStateToProps = state => {
   return {
@@ -33,19 +32,15 @@ class ConnectedOrder extends Component {
     totalPrice=tPrice-tPrice*0.2
 
   }
-   async func1(item,i,category){
+   async func1(item){
      var recommendItems= await Api.searchItems({
          category:item.category
      })
-     tmp[i]=recommendItems.data.filter(x => x.id !== item.id)
-     for (let index = 0; index < category.length; index++) {
-      var item = await Api.getItemUsingID(category[index].id)
-      tmp[i]=tmp[i].filter(x => x.id !== item.id)
-    }
-    tmp[i]=tmp[i].slice(0,3)
+     return recommendItems
    }
+
   async getRecommendItems(){
-    
+    var tmp=[]
     var dairyProducts= this.props.checkedOutItems.filter(x=>x.category==="Dairy products")
     var snacksAndSweetsProducts= this.props.checkedOutItems.filter(x=>x.category==="Snacks and Sweets")
     var vegeFrutisProducts= this.props.checkedOutItems.filter(x=>x.category==="Fruits and Vegetables")
@@ -54,19 +49,45 @@ class ConnectedOrder extends Component {
     for (let i = 0; i < this.props.checkedOutItems.length; i++){
       var product=this.props.checkedOutItems[i]
       if(product.category==="Dairy products"){
-       await this.func1(product,0,dairyProducts)
+      var recommendItems = await this.func1(product)
+      tmp[0]=recommendItems.data.filter(x => x.id !== product.id)
+      for (let index = 0; index < dairyProducts.length; index++) {
+        item = await Api.getItemUsingID(dairyProducts[index].id)
+        tmp[0]=tmp[0].filter(x => x.id !== item.id)
+      }
+      tmp[0]=tmp[0].slice(0,3)
       }
       else if (product.category==="Snacks and Sweets") {
-        await this.func1(product,1,snacksAndSweetsProducts)
+      var recommendItems = await this.func1(product)
+      tmp[1]=recommendItems.data.filter(x => x.id !== product.id)
+      for (let index = 0; index < snacksAndSweetsProducts.length; index++) {
+        item = await Api.getItemUsingID(snacksAndSweetsProducts[index].id)
+        tmp[1]=tmp[1].filter(x => x.id !== item.id)
+      }
+      tmp[1]=tmp[1].slice(0,3)
       }
       else if (product.category==="Meats and fish") {
-        await this.func1(product,2,meatsAndFishProducts)
+      var recommendItems = await this.func1(product)
+      tmp[2]=recommendItems.data.filter(x => x.id !== product.id)
+      for (let index = 0; index < meatsAndFishProducts.length; index++) {
+        item = await Api.getItemUsingID(meatsAndFishProducts[index].id)
+        tmp[2]=tmp[2].filter(x => x.id !== item.id)
+      }
+      tmp[2]=tmp[2].slice(0,3)
       }
       else{
-        await this.func1(product,3,vegeFrutisProducts)
+          var item = await Api.getItemUsingID(vegeFrutisProducts[0].id)
+        var recommendItems= await Api.searchItems({
+            category:item.category
+        })
+        tmp[3]=recommendItems.data.filter(x => x.id !== item.id)
+        for (let index = 0; index < vegeFrutisProducts.length; index++) {
+          item = await Api.getItemUsingID(vegeFrutisProducts[index].id)
+          tmp[3]=tmp[3].filter(x => x.id !== item.id)
+        }
+        tmp[3]=tmp[3].slice(0,3)
       }
     }
-  
     this.setState({
           recommendItems:tmp
           })
