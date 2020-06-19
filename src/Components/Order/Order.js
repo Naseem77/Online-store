@@ -58,11 +58,8 @@ class ConnectedOrder extends Component {
       tmp[0]=tmp[0].slice(0,3)
       }
       else if (product.category==="Snacks and Sweets") {
-        var item = await Api.getItemUsingID(snacksAndSweetsProducts[0].id)
-      var recommendItems= await Api.searchItems({
-          category:item.category
-      })
-      tmp[1]=recommendItems.data.filter(x => x.id !== item.id)
+      var recommendItems = await this.func1(product)
+      tmp[1]=recommendItems.data.filter(x => x.id !== product.id)
       for (let index = 0; index < snacksAndSweetsProducts.length; index++) {
         item = await Api.getItemUsingID(snacksAndSweetsProducts[index].id)
         tmp[1]=tmp[1].filter(x => x.id !== item.id)
@@ -70,11 +67,8 @@ class ConnectedOrder extends Component {
       tmp[1]=tmp[1].slice(0,3)
       }
       else if (product.category==="Meats and fish") {
-        var item = await Api.getItemUsingID(meatsAndFishProducts[0].id)
-      var recommendItems= await Api.searchItems({
-          category:item.category
-      })
-      tmp[2]=recommendItems.data.filter(x => x.id !== item.id)
+      var recommendItems = await this.func1(product)
+      tmp[2]=recommendItems.data.filter(x => x.id !== product.id)
       for (let index = 0; index < meatsAndFishProducts.length; index++) {
         item = await Api.getItemUsingID(meatsAndFishProducts[index].id)
         tmp[2]=tmp[2].filter(x => x.id !== item.id)
